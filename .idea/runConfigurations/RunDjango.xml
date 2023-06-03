@@ -8,11 +8,11 @@
     </envs>
     <option name="SDK_HOME" value="C:\Users\totha\.conda\envs\cuoiky\python.exe" />
     <option name="SDK_NAME" value="cuoiky" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/WebScrapping" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/web" />
     <option name="IS_MODULE_SDK" value="false" />
     <option name="ADD_CONTENT_ROOTS" value="true" />
     <option name="ADD_SOURCE_ROOTS" value="true" />
-    <option name="SCRIPT_NAME" value="$PROJECT_DIR$/WebScrapping/manage.py" />
+    <option name="SCRIPT_NAME" value="$PROJECT_DIR$/web/manage.py" />
     <option name="PARAMETERS" value="runserver 5000" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />
