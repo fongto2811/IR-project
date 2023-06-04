@@ -10,7 +10,38 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link rel="stylesheet" href="./search.css" />
+    <style>
+      /* CSS cho phần sidebar */
+      .sidebar {
+        width: 300px;
+        background-color: #f1f1f1;
+        height: 100%;
+        position: fixed;
+      }
+
+      /* CSS cho nội dung chính */
+      .main-content {
+        margin-left: 200px; /* Đảm bảo nội dung không bị che khuất bởi sidebar */
+        padding: 20px;
+      }
+      .ratings i {
+        color: #cecece;
+        font-size: 32px;
+      }
+
+      .rating-color {
+        color: #fbc634 !important;
+      }
+      .preview_img {
+        width: 150px;
+        height: 150px;
+      }
+    </style>
     <title>Search Page</title>
   </head>
   <body>
@@ -28,7 +59,322 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
-    <div></div>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="sidebar">
+          <div class="card">
+            <div class="dropdown d-flex justify-content-between mt-1 mb-1">
+              <h5 class="mt-1 ms-1">Featured Brand</h5>
+              <button
+                class="btn btn-primary dropdown-toggle me-1"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Selected Brand
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Automotive</a></li>
+                <li><a class="dropdown-item" href="#">Arts & Crafts</a></li>
+                <li>
+                  <a class="dropdown-item" href="#">Baby</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Beauty & Personal Care</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Computers</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Electronics</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Health & Household</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Home & Kitchen</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Industrial & Scientific</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Kindle Store</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Software</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Sports & Outdoors</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Toys & Games</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Featured Price</h5>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  0 - 5 USD
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault1"
+                />
+                <label class="form-check-label" for="flexCheckDefault1">
+                  5 - 10 USD
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault2"
+                />
+                <label class="form-check-label" for="flexCheckDefault2">
+                  10 - 20 USD
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault3"
+                />
+                <label class="form-check-label" for="flexCheckDefault3">
+                  > 20 USD
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Featured Star</h5>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="flexRadioDefault"
+                  value=""
+                  id="flexCheckDefault"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="flexRadioDefault"
+                  value=""
+                  id="flexCheckDefault1"
+                />
+                <label class="form-check-label" for="flexCheckDefault1">
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="flexRadioDefault"
+                  value=""
+                  id="flexCheckDefault2"
+                />
+                <label class="form-check-label" for="flexCheckDefault2">
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star"></i>
+
+                  <i class="fa fa-star"></i>
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="flexRadioDefault"
+                  value=""
+                  id="flexCheckDefault3"
+                />
+                <label class="form-check-label" for="flexCheckDefault3">
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star"></i>
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="flexRadioDefault"
+                  value=""
+                  id="flexCheckDefault3"
+                />
+                <label class="form-check-label" for="flexCheckDefault3">
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <h5 class="mt-3">Show 100 Items</h5>
+        <div class="card mb-3 me-3">
+          <div class="d-flex justify-content-start">
+            <img
+              class="preview_img m-2"
+              src="https://m.media-amazon.com/images/I/61POocZniqL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
+              alt=""
+            />
+            <div class="ms-2">
+              <h6>
+                Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 150 Sheets per
+                Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)
+              </h6>
+              <div>
+                <label>
+                  2.0
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </label>
+                <label class="ms-2 text-primary">42,155 Ratings</label>
+              </div>
+                <div><strong>Price</strong> : 24.99 $</div>
+                <div><strong>Brand</strong>: Amazon Basics</div>
+                <div><strong>Description</strong>: Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets
+                  Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops</div>
+              </div>
+            </div>
+        </div>
+        <div class="card mb-3 me-3">
+          <div class="d-flex justify-content-start">
+            <img
+              class="preview_img m-2"
+              src="https://m.media-amazon.com/images/I/61POocZniqL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
+              alt=""
+            />
+            <div class="ms-2">
+              <h6>
+                Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 150 Sheets per
+                Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)
+              </h6>
+              <div>
+                <label>
+                  2.0
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </label>
+                <label class="ms-2 text-primary">42,155 Ratings</label>
+              </div>
+                <div><strong>Price</strong> : 24.99 $</div>
+                <div><strong>Brand</strong>: Amazon Basics</div>
+                <div><strong>Description</strong>: Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets
+                  Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops</div>
+              </div>
+            </div>
+        </div>
+        <div class="card mb-3 me-3">
+          <div class="d-flex justify-content-start">
+            <img
+              class="preview_img m-2"
+              src="https://m.media-amazon.com/images/I/61POocZniqL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
+              alt=""
+            />
+            <div class="ms-2">
+              <h6>
+                Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 150 Sheets per
+                Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)
+              </h6>
+              <div>
+                <label>
+                  2.0
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </label>
+                <label class="ms-2 text-primary">42,155 Ratings</label>
+              </div>
+                <div><strong>Price</strong> : 24.99 $</div>
+                <div><strong>Brand</strong>: Amazon Basics</div>
+                <div><strong>Description</strong>: Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets
+                  Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops</div>
+              </div>
+            </div>
+        </div>
+        <div class="card mb-3 me-3">
+          <div class="d-flex justify-content-start">
+            <img
+              class="preview_img m-2"
+              src="https://m.media-amazon.com/images/I/61POocZniqL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
+              alt=""
+            />
+            <div class="ms-2">
+              <h6>
+                Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 150 Sheets per
+                Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)
+              </h6>
+              <div>
+                <label>
+                  2.0
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </label>
+                <label class="ms-2 text-primary">42,155 Ratings</label>
+              </div>
+                <div><strong>Price</strong> : 24.99 $</div>
+                <div><strong>Brand</strong>: Amazon Basics</div>
+                <div><strong>Description</strong>: Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets
+                  Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops</div>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
 <script
