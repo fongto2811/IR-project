@@ -48,7 +48,7 @@
       class="navbar navbar-light bg-light d-flex w-100 justify-content-between"
     >
       <h2 class="ms-3">Product</h2>
-      <form class="d-flex h-50 w-25 me-3" id="search-form" action="">
+      <form class="d-flex h-50 w-25 me-3" id="search-form" method="GET" action="{% url 'home' %}">
         <input
           class="form-control me-2"
           name="search"
@@ -58,6 +58,10 @@
         />
         <button class="btn btn-outline-success" type="submit" onclick="addSearchParam()">Search</button>
       </form>
+      {% comment %} <form id="search-form" method="GET" action="{% url 'home' %}"> 
+        <input class="form-control me-2" type="text" name="search" placeholder="Tìm kiếm sản phẩm">
+        <button type="submit">Tìm kiếm</button>
+      </form> {% endcomment %}
     </div>
     <div class="row">
       <div class="col-sm-3">
@@ -113,65 +117,37 @@
               </ul>
             </div>
           </div>
-          <div class="card">
+          <div class="card" >
             <div class="card-body">
               <h5 class="card-title">Featured Price</h5>
               <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault"
-                />
-                <label class="form-check-label" for="flexCheckDefault">
-                  0 - 5 USD
-                </label>
-              </div>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1" onclick="filterByPrice1()">
+                <label class="form-check-label" for="flexCheckDefault1">0 - 5 USD</label>
+              </div>              
               <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault1"
-                />
-                <label class="form-check-label" for="flexCheckDefault1">
-                  5 - 10 USD
-                </label>
-              </div>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" onclick="filterByPrice2()">
+                <label class="form-check-label" for="flexCheckDefault2">5 - 10 USD</label>
+              </div>       
               <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault2"
-                />
-                <label class="form-check-label" for="flexCheckDefault2">
-                  10 - 20 USD
-                </label>
-              </div>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" onclick="filterByPrice3()">
+                <label class="form-check-label" for="flexCheckDefault3">10 - 20 USD</label>
+              </div>       
               <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault3"
-                />
-                <label class="form-check-label" for="flexCheckDefault3">
-                  > 20 USD
-                </label>
-              </div>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4" onclick="filterByPrice4()">
+                <label class="form-check-label" for="flexCheckDefault4">>20 USD</label>
+              </div>       
             </div>
           </div>
-          <div class="card">
+          <div class="card" data-stars="{{ product.stars }}">           
             <div class="card-body">
               <h5 class="card-title">Featured Star</h5>
-              <div class="form-check">
+              <div class="form-check" action="{% url 'home' %}" method="GET">
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  name="flexRadioDefault"
-                  value=""
-                  id="flexCheckDefault"
+                  name="stars"
+                  value="1"
+                  id="star-1"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   <i class="fa fa-star rating-color"></i>
@@ -181,15 +157,15 @@
                   <i class="fa fa-star"></i>
                 </label>
               </div>
-              <div class="form-check">
+              <div class="form-check" action="{% url 'home' %}" method="GET">
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  name="flexRadioDefault"
-                  value=""
-                  id="flexCheckDefault1"
+                  name="stars"
+                  value="2"
+                  id="star-2"
                 />
-                <label class="form-check-label" for="flexCheckDefault1">
+                <label class="form-check-label" for="star-2">
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star"></i>
@@ -197,15 +173,15 @@
                   <i class="fa fa-star"></i>
                 </label>
               </div>
-              <div class="form-check">
+              <div class="form-check" action="{% url 'home' %}" method="GET">
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  name="flexRadioDefault"
-                  value=""
-                  id="flexCheckDefault2"
+                  name="stars"
+                  value="3"
+                  id="star-3"
                 />
-                <label class="form-check-label" for="flexCheckDefault2">
+                <label class="form-check-label" for="star-3">
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
@@ -214,15 +190,15 @@
                   <i class="fa fa-star"></i>
                 </label>
               </div>
-              <div class="form-check">
+              <div class="form-check" action="{% url 'home' %}" method="GET">
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  name="flexRadioDefault"
-                  value=""
-                  id="flexCheckDefault3"
+                  name="stars"
+                  value="4"
+                  id="star-4"
                 />
-                <label class="form-check-label" for="flexCheckDefault3">
+                <label class="form-check-label" for="star-4">
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
@@ -230,24 +206,25 @@
                   <i class="fa fa-star"></i>
                 </label>
               </div>
-              <div class="form-check">
+              <div class="form-check" action="{% url 'home' %}" method="GET">
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  name="flexRadioDefault"
-                  value=""
-                  id="flexCheckDefault3"
+                  name="stars"
+                  value="5"
+                  id="star-5"
                 />
-                <label class="form-check-label" for="flexCheckDefault3">
+                <label class="form-check-label" for="star-5">
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
-                </label>
+                </label>               
               </div>
             </div>
           </div>
+
         </div>
       </div>
       <div class="col-sm-9">
@@ -316,6 +293,149 @@
       console.log(window.location.href);
   }
 </script>
+<script>
+  function filterByPrice1() {
+    // Lấy giá trị checkbox
+    var checkbox = document.getElementById("flexCheckDefault1");
+    
+    // Lấy giá trị giá tối thiểu và giá tối đa
+    var minPrice = 0;
+    var maxPrice = 5;
+    
+    // Kiểm tra trạng thái checkbox
+    if (checkbox.checked) {
+      // Gửi yêu cầu lọc tới server
+      var url = window.location.href;
+      if (url.indexOf('?') > -1){
+          url += '&min_price=' + minPrice + '&max_price=' + maxPrice;
+      } else {
+          url += '?min_price=' + minPrice + '&max_price=' + maxPrice;
+      }
+      window.location.href = url;
+    } else {
+      // Xóa yêu cầu lọc giá
+      var url = window.location.href;
+      url = url.replace(/([&?])min_price=[^&]+/g, '');
+      url = url.replace(/([&?])max_price=[^&]+/g, '');
+      window.location.href = url;
+    }
+  }
+</script>
+<script>
+  function filterByPrice2() {
+    // Lấy giá trị checkbox
+    var checkbox = document.getElementById("flexCheckDefault2");
+    
+    // Lấy giá trị giá tối thiểu và giá tối đa
+    var minPrice = 5;
+    var maxPrice = 10;
+    
+    // Kiểm tra trạng thái checkbox
+    if (checkbox.checked) {
+      // Gửi yêu cầu lọc tới server
+      var url = window.location.href;
+      if (url.indexOf('?') > -1){
+          url += '&min_price=' + minPrice + '&max_price=' + maxPrice;
+      } else {
+          url += '?min_price=' + minPrice + '&max_price=' + maxPrice;
+      }
+      window.location.href = url;
+    } else {
+      // Xóa yêu cầu lọc giá
+      var url = window.location.href;
+      url = url.replace(/([&?])min_price=[^&]+/g, '');
+      url = url.replace(/([&?])max_price=[^&]+/g, '');
+      window.location.href = url;
+    }
+  }
+</script>
+
+<script>
+  function filterByPrice3() {
+    // Lấy giá trị checkbox
+    var checkbox = document.getElementById("flexCheckDefault3");
+    
+    // Lấy giá trị giá tối thiểu và giá tối đa
+    var minPrice = 10;
+    var maxPrice = 20;
+    
+    // Kiểm tra trạng thái checkbox
+    if (checkbox.checked) {
+      // Gửi yêu cầu lọc tới server
+      var url = window.location.href;
+      if (url.indexOf('?') > -1){
+          url += '&min_price=' + minPrice + '&max_price=' + maxPrice;
+      } else {
+          url += '?min_price=' + minPrice + '&max_price=' + maxPrice;
+      }
+      window.location.href = url;
+    } else {
+      // Xóa yêu cầu lọc giá
+      var url = window.location.href;
+      url = url.replace(/([&?])min_price=[^&]+/g, '');
+      url = url.replace(/([&?])max_price=[^&]+/g, '');
+      window.location.href = url;
+    }
+  }
+</script>
+<script>
+  function filterByPrice4() {
+    // Lấy giá trị checkbox
+    var checkbox = document.getElementById("flexCheckDefault4");
+    
+    // Lấy giá trị giá tối thiểu và giá tối đa
+    var minPrice = 20;
+    var maxPrice = 100;
+    
+    // Kiểm tra trạng thái checkbox
+    if (checkbox.checked) {
+      // Gửi yêu cầu lọc tới server
+      var url = window.location.href;
+      if (url.indexOf('?') > -1){
+          url += '&min_price=' + minPrice + '&max_price=' + maxPrice;
+      } else {
+          url += '?min_price=' + minPrice + '&max_price=' + maxPrice;
+      }
+      window.location.href = url;
+    } else {
+      // Xóa yêu cầu lọc giá
+      var url = window.location.href;
+      url = url.replace(/([&?])min_price=[^&]+/g, '');
+
+      window.location.href = url;
+    }
+  }
+</script>
+<script>
+  // Lắng nghe sự kiện khi các checkbox được thay đổi
+  const checkboxes = document.querySelectorAll('input[name="stars"]');
+  checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener('change', filterProducts);
+  });
+
+  // Hàm lọc sản phẩm dựa trên đánh giá sao
+  function filterProducts() {
+      // Lấy giá trị đánh giá sao đã chọn
+      const selectedStars = Array.from(checkboxes)
+          .filter((checkbox) => checkbox.checked)
+          .map((checkbox) => checkbox.value);
+
+      // Lấy danh sách sản phẩm
+      const productCards = document.querySelectorAll('.product-card');
+
+      // Duyệt qua từng sản phẩm và ẩn/hiển thị dựa trên đánh giá sao
+      productCards.forEach((card) => {
+          const stars = parseFloat(card.getAttribute('data-stars'));
+
+          if (selectedStars.length === 0 || selectedStars.includes(stars.toString())) {
+              card.style.display = 'block';
+          } else {
+              card.style.display = 'none';
+          }
+      });
+  }
+</script>
+
   </body>
 </html>
 

@@ -13,7 +13,7 @@ products = {"products":[
         "Category": "Industrial",
         "description": " Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops",
         "price": {
-            "value": "29.44",
+            "value": "7.2",
             "currency": "USD",
         },
         "url": "admin",
@@ -29,7 +29,7 @@ products = {"products":[
         "Category": "Industrial",
         "description": " Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops",
         "price": {
-            "value": "29.44",
+            "value": "7",
             "currency": "USD",
         },
         "url": "admin",
@@ -45,7 +45,7 @@ products = {"products":[
         "Category": "Industrial",
         "description": " Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops",
         "price": {
-            "value": "29.44",
+            "value": "8",
             "currency": "USD",
         },
         "url": "admin",
@@ -61,7 +61,7 @@ products = {"products":[
         "Category": "Industrial",
         "description": " Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops",
         "price": {
-            "value": "29.44",
+            "value": "3",
             "currency": "USD",
         },
         "url": "admin",
@@ -84,7 +84,7 @@ products = {"products":[
 },
     {
         "id": "5",
-        "title": "Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 150 Sheets per Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)",
+        "title": "Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 80 Sheets per Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)",
         "asin": "B09BWFX1L6",
         "brand": "Amazon Basics",
         "stars": "4.2",
@@ -100,7 +100,7 @@ products = {"products":[
 },
     {
         "id": "5",
-        "title": "Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 150 Sheets per Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)",
+        "title": "Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 90 Sheets per Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)",
         "asin": "B09BWFX1L6",
         "brand": "Amazon Basics",
         "stars": "4.2",
@@ -109,7 +109,7 @@ products = {"products":[
         "Category": "Baby",
         "description": " Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops",
         "price": {
-            "value": "29.44",
+            "value": "12",
             "currency": "USD",
         },
         "url": "admin",
@@ -134,19 +134,52 @@ products = {"products":[
 
 def getProductsFilter(req, products):
     category = req.GET.get('category')
+    min_price = req.GET.get('min_price')
+    max_price = req.GET.get('max_price')
+    search_query = req.GET.get('search')
+    stars = req.GET.get('stars')  # New line
+    
     filtered_items = []
-    print(category)
+
     if category:
         for item in products["products"]:
-            print(item['Category']+"1")
             if item['Category'] == category:
                 filtered_items.append(item)
-        return filtered_items
-    return products["products"]
+    else:
+        filtered_items = products["products"]
 
+    if min_price and max_price:
+        filtered_items = [item for item in filtered_items if float(item['price']['value']) >= float(min_price) and float(item['price']['value']) <= float(max_price)]
+    elif min_price:
+        filtered_items = [item for item in filtered_items if float(item['price']['value']) >= float(min_price)]
+    elif max_price:
+        filtered_items = [item for item in filtered_items if float(item['price']['value']) <= float(max_price)]
+    
+    if search_query:
+        filtered_items = [item for item in filtered_items if search_query.lower() in item['title'].lower()]
+    
+    if stars:  # New lines
+        filtered_items = [item for item in filtered_items if float(item['stars']) >= float(stars)]
+    
+    return filtered_items
+
+
+
+
+# def getProductsFilter(req, products):
+#     category = req.GET.get('category')
+#     filtered_items = []
+#     print(category)
+#     if category:
+#         for item in products["products"]:
+#             print(item['Category']+"1")
+#             if item['Category'] == category:
+#                 filtered_items.append(item)
+#         return filtered_items
+#     return products["products"]
 def home(request):
     productsFilter = getProductsFilter(request, products)
-    pagination = Paginator(productsFilter,4)
+    pagination = Paginator(productsFilter, 4)
     page_number = request.GET.get("page")
     
     try:
@@ -157,5 +190,7 @@ def home(request):
     except EmptyPage:
         # Nếu page không có item nào, trả về page cuối cùng
         productsList = pagination.page(pagination.num_pages)
+    
     count = len(productsFilter)
-    return render(request, 'home.html', {"countProducts": count, "products":productsFilter, "productsList": productsList})
+    
+    return render(request, 'home.html', {"countProducts": count, "products": productsFilter, "productsList": productsList})
