@@ -140,79 +140,84 @@
           </div>
           <div class="card" data-stars="{{ product.stars }}">           
             <div class="card-body">
-              <h5 class="card-title">Featured Star</h5>
-              <div class="form-check" action="{% url 'home' %}" method="GET">
+              <h5 class="card-title">Featured Star</h5>          
+              <div class="form-check" >
                 <input
                   class="form-check-input"
                   type="checkbox"
                   name="stars"
                   value="1"
                   id="star-1"
+                  onclick="filterByStars(1)"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   <i class="fa fa-star rating-color"></i>
+                  {% comment %} <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i> {% endcomment %}
                 </label>
               </div>
-              <div class="form-check" action="{% url 'home' %}" method="GET">
+              <div class="form-check" >
                 <input
                   class="form-check-input"
                   type="checkbox"
                   name="stars"
                   value="2"
                   id="star-2"
+                  onclick="filterByStars(2)"
                 />
                 <label class="form-check-label" for="star-2">
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
+                  {% comment %} <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i> {% endcomment %}
                 </label>
               </div>
-              <div class="form-check" action="{% url 'home' %}" method="GET">
+              <div class="form-check" >
                 <input
                   class="form-check-input"
                   type="checkbox"
                   name="stars"
                   value="3"
-                  id="star-3"
+                  id="star-3"                 
+                  onclick="filterByStars(3)"
                 />
                 <label class="form-check-label" for="star-3">
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star"></i>
+                  {% comment %} <i class="fa fa-star"></i>
 
-                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i> {% endcomment %}
                 </label>
               </div>
-              <div class="form-check" action="{% url 'home' %}" method="GET">
+              <div class="form-check">
                 <input
                   class="form-check-input"
                   type="checkbox"
                   name="stars"
                   value="4"
                   id="star-4"
+                  onclick="filterByStars(4)"
                 />
                 <label class="form-check-label" for="star-4">
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star"></i>
+                  {% comment %} <i class="fa fa-star"></i> {% endcomment %}
                 </label>
               </div>
-              <div class="form-check" action="{% url 'home' %}" method="GET">
+              <div class="form-check">
                 <input
                   class="form-check-input"
                   type="checkbox"
                   name="stars"
                   value="5"
                   id="star-5"
+                  onclick="filterByStars(5)"
                 />
                 <label class="form-check-label" for="star-5">
                   <i class="fa fa-star rating-color"></i>
@@ -385,7 +390,7 @@
     
     // Lấy giá trị giá tối thiểu và giá tối đa
     var minPrice = 20;
-    var maxPrice = 100;
+    var maxPrice = 1000;
     
     // Kiểm tra trạng thái checkbox
     if (checkbox.checked) {
@@ -407,35 +412,37 @@
   }
 </script>
 <script>
-  // Lắng nghe sự kiện khi các checkbox được thay đổi
-  const checkboxes = document.querySelectorAll('input[name="stars"]');
-  checkboxes.forEach((checkbox) => {
-      checkbox.addEventListener('change', filterProducts);
-  });
+  function filterByStars(star) {
+    // Lấy giá trị checkbox
+    var checkbox = document.getElementById("star-" + star);
 
-  // Hàm lọc sản phẩm dựa trên đánh giá sao
-  function filterProducts() {
-      // Lấy giá trị đánh giá sao đã chọn
-      const selectedStars = Array.from(checkboxes)
-          .filter((checkbox) => checkbox.checked)
-          .map((checkbox) => checkbox.value);
-
-      // Lấy danh sách sản phẩm
-      const productCards = document.querySelectorAll('.product-card');
-
-      // Duyệt qua từng sản phẩm và ẩn/hiển thị dựa trên đánh giá sao
-      productCards.forEach((card) => {
-          const stars = parseFloat(card.getAttribute('data-stars'));
-
-          if (selectedStars.length === 0 || selectedStars.includes(stars.toString())) {
-              card.style.display = 'block';
-          } else {
-              card.style.display = 'none';
-          }
-      });
+    // Kiểm tra trạng thái checkbox
+    if (checkbox.checked) {
+      // Gửi yêu cầu lọc tới server
+      var url = window.location.href;
+      if (url.indexOf('?') > -1) {
+        url += '&stars=' + star;
+      } else {
+        url += '?stars=' + star;
+      }
+      window.location.href = url;
+    } else {
+      // Xóa yêu cầu lọc theo số sao
+      var url = window.location.href;
+      url = url.replace(/([&?])stars=[^&]+/g, '');
+      window.location.href = url;
+    }
   }
-</script>
 
+  // Thêm sự kiện change cho các checkbox
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach(function (checkbox) {
+    checkbox.addEventListener('change', function () {
+      var star = this.value;
+      filterByStars(star);
+    });
+  });
+</script>
   </body>
 </html>
 
