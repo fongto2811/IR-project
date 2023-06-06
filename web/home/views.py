@@ -36,11 +36,11 @@ def getProductsFilter(req, products):
     if category:
         body = {
             "query": {
-                "multi_match": {
-                    "query": category,
-                    "fields": "breadCrumbs",
-                }
-            }
+                "match": {
+                    "breadCrumbs": category,
+                },
+            },
+            "size": 10000,
         }
         filtered_items = [models.SearchResult(p['_source']) for p in
                           es.search(index=index_name, body=body)["hits"]["hits"]]
@@ -84,14 +84,16 @@ def home(request):
                     "query": search_query,
                     "fields": ["brand", "title"],
                     "operator": "and"
-                }
-            }
+                },
+            },
+            "size": 10000,
         }
     else:
         body = {
             "query": {
                 "match_all": {}
-            }
+            },
+            "size": 10000,
         }
     products = [models.SearchResult(p['_source']) for p in es.search(index=index_name, body=body)["hits"]["hits"]]
     productsFilter = getProductsFilter(request, products)

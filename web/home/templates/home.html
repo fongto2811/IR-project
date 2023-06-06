@@ -47,7 +47,7 @@
     <div
       class="navbar navbar-light bg-light d-flex w-100 justify-content-between"
     >
-      <h2 class="ms-3">Product</h2>
+      <h2 class="ms-3"><a style="text-decoration:none;color:#000000;" href="/">Product</a></h2>
       <form class="d-flex h-50 w-25 me-3" id="search-form" method="GET" action="{% url 'home' %}">
         <input
           class="form-control me-2"
@@ -238,13 +238,13 @@
         <div class="card mb-3 me-3">
           <div class="d-flex justify-content-start">
             <img
-              class="preview_img m-2"
+              class="preview_img m-2 img-thumbnail"
               src="{{product.thumbnailImage}}"
               alt=""
             />
             <div class="ms-2">
               <h6>
-                {{product.title}}
+                <a href="{{product.url}}">{{product.title}}</a>
               </h6>
               <div>
                 <label>
@@ -255,7 +255,7 @@
                   {% if product.stars >= 4.0 %}<i class="fa fa-star rating-color"></i>{% else %}<i class="fa fa-star"></i>{% endif %}
                   {% if product.stars == 5.0 %}<i class="fa fa-star rating-color"></i>{% else %}<i class="fa fa-star"></i>{% endif %}
                 </label>
-                <label class="ms-2 text-primary">{{product.reviewCount}} Ratings</label>
+                <label class="ms-2 text-primary">{{product.reviewsCount}}</label>
               </div>
                 <div><strong>Price</strong>: {{product.price.value}} $</div>
                 <div><strong>Brand</strong>: {{product.brand}}</div>
