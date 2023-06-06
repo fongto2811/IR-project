@@ -1,167 +1,65 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
+from elasticsearch import Elasticsearch
 
-products = {"products": [
-    {
-        "id": "1",
-        "title": "Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 150 Sheets per Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)",
-        "asin": "B09BWFX1L6",
-        "brand": "Amazon Basics",
-        "stars": "4.2",
-        "reviewCount": "42,115",
-        "thumbnailImage": "https://m.media-amazon.com/images/I/61POocZniqL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
-        "Category": "Industrial",
-        "description": " Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops",
-        "price": {
-            "value": "7.2",
-            "currency": "USD",
-        },
-        "url": "admin",
-    },
-    {
-        "id": "2",
-        "title": "Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 150 Sheets per Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)",
-        "asin": "B09BWFX1L6",
-        "brand": "Amazon Basics",
-        "stars": "4",
-        "reviewCount": "42,115",
-        "thumbnailImage": "https://m.media-amazon.com/images/I/61POocZniqL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
-        "Category": "Industrial",
-        "description": " Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops",
-        "price": {
-            "value": "7",
-            "currency": "USD",
-        },
-        "url": "admin",
-    },
-    {
-        "id": "3",
-        "title": "Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 150 Sheets per Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)",
-        "asin": "B09BWFX1L6",
-        "brand": "Amazon Basics",
-        "stars": "1.2",
-        "reviewCount": "42,115",
-        "thumbnailImage": "https://m.media-amazon.com/images/I/61POocZniqL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
-        "Category": "Industrial",
-        "description": " Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops",
-        "price": {
-            "value": "8",
-            "currency": "USD",
-        },
-        "url": "admin",
-    },
-    {
-        "id": "4",
-        "title": "Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 150 Sheets per Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)",
-        "asin": "B09BWFX1L6",
-        "brand": "Amazon Basics",
-        "stars": "1",
-        "reviewCount": "42,115",
-        "thumbnailImage": "https://m.media-amazon.com/images/I/61POocZniqL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
-        "Category": "Industrial",
-        "description": " Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops",
-        "price": {
-            "value": "3",
-            "currency": "USD",
-        },
-        "url": "admin",
-    },
-    {
-        "id": "5",
-        "title": "Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 150 Sheets per Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)",
-        "asin": "B09BWFX1L6",
-        "brand": "Amazon Basics",
-        "stars": "5",
-        "reviewCount": "42,115",
-        "thumbnailImage": "https://m.media-amazon.com/images/I/61POocZniqL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
-        "Category": "Industrial",
-        "description": " Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops",
-        "price": {
-            "value": "29.44",
-            "currency": "USD",
-        },
-        "url": "admin",
-    },
-    {
-        "id": "5",
-        "title": "Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 80 Sheets per Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)",
-        "asin": "B09BWFX1L6",
-        "brand": "Amazon Basics",
-        "stars": "0.5",
-        "reviewCount": "42,115",
-        "thumbnailImage": "https://m.media-amazon.com/images/I/61POocZniqL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
-        "Category": "Baby",
-        "description": " Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops",
-        "price": {
-            "value": "29.44",
-            "currency": "USD",
-        },
-        "url": "admin",
-    },
-    {
-        "id": "5",
-        "title": "Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 90 Sheets per Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)",
-        "asin": "B09BWFX1L6",
-        "brand": "Amazon Basics",
-        "stars": "4.2",
-        "reviewCount": "42,115",
-        "thumbnailImage": "https://m.media-amazon.com/images/I/61POocZniqL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
-        "Category": "Baby",
-        "description": " Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops",
-        "price": {
-            "value": "12",
-            "currency": "USD",
-        },
-        "url": "admin",
-    },
-    {
-        "id": "5",
-        "title": "Amazon Basics 2-Ply Paper Towels, Flex-Sheets, 150 Sheets per Roll, 12 Rolls (2 Packs of 6), White (Previously Solimo)",
-        "asin": "B09BWFX1L6",
-        "brand": "Amazon Basics",
-        "stars": "3",
-        "reviewCount": "42,115",
-        "thumbnailImage": "https://m.media-amazon.com/images/I/61POocZniqL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
-        "Category": "Baby",
-        "description": " Amazon Basics paper towels include 12 rolls with 150 2-ply sheets per roll, 1,800 total sheets Amazon Basics Towels lint less making them great for cleaning hard surfaces like mirrors, glass, and countertops",
-        "price": {
-            "value": "29.44",
-            "currency": "USD",
-        },
-        "url": "admin",
-    },
-]}
+from . import models
+
+HOST = "https://localhost:9200"
+ELASTIC_USER = "elastic"
+# The password for the 'elastic' user generated by Elasticsearch
+ELASTIC_PASSWORD = "4n=KTc8mxoKwp=UCKfw_"
+# The path of ca certificates
+CA_CERTS = r"D:/4T/cuoiky/elasticsearch-8.6.2/config/certs/http_ca.crt"
+index_name = "product"
+type_name = "_doc"
+path = r"D:/4T/cuoiky/documents/"
+
+# Create the client instance
+es = Elasticsearch(
+    hosts=HOST,
+    ca_certs=CA_CERTS,
+    http_auth=(ELASTIC_USER, ELASTIC_PASSWORD),
+)
+
+if not es.ping():
+    raise ValueError("Connection failed")
 
 
 def getProductsFilter(req, products):
     category = req.GET.get('category')
     min_price = req.GET.get('min_price')
     max_price = req.GET.get('max_price')
-    search_query = req.GET.get('search')
     stars = req.GET.get('stars')  # New line
 
     filtered_items = []
 
     if category:
-        for item in products["products"]:
-            if item['Category'] == category:
-                filtered_items.append(item)
+        body = {
+            "query": {
+                "multi_match": {
+                    "query": category,
+                    "fields": "breadCrumbs",
+                }
+            }
+        }
+        filtered_items = [models.SearchResult(p['_source']) for p in
+                          es.search(index=index_name, body=body)["hits"]["hits"]]
     else:
-        filtered_items = products["products"]
+        filtered_items = products
 
     if min_price and max_price:
         filtered_items = [item for item in filtered_items if
-                          float(min_price) <= float(item['price']['value']) <= float(max_price)]
+                          float(min_price) <= float(item.get_price()) <= float(max_price)]
     elif min_price:
-        filtered_items = [item for item in filtered_items if float(item['price']['value']) >= float(min_price)]
+        filtered_items = [item for item in filtered_items if float(item.get_price()) >= float(min_price)]
     elif max_price:
-        filtered_items = [item for item in filtered_items if float(item['price']['value']) <= float(max_price)]
+        filtered_items = [item for item in filtered_items if float(item.get_price()) <= float(max_price)]
 
-    if search_query:
-        filtered_items = [item for item in filtered_items if search_query.lower() in item['title'].lower()]
+    # if search_query:
+    #     filtered_items = [item for item in filtered_items if search_query.lower() in item['title'].lower()]
 
     if stars:  # New lines
-        filtered_items = [item for item in filtered_items if float(item['stars']) >= float(stars)]
+        filtered_items = [item for item in filtered_items if float(item.get_stars()) <= float(stars)]
 
     return filtered_items
 
@@ -178,6 +76,24 @@ def getProductsFilter(req, products):
 #         return filtered_items
 #     return products["products"]
 def home(request):
+    search_query = request.GET.get('search')
+    if search_query:
+        body = {
+            "query": {
+                "multi_match": {
+                    "query": search_query,
+                    "fields": ["brand", "title"],
+                    "operator": "and"
+                }
+            }
+        }
+    else:
+        body = {
+            "query": {
+                "match_all": {}
+            }
+        }
+    products = [models.SearchResult(p['_source']) for p in es.search(index=index_name, body=body)["hits"]["hits"]]
     productsFilter = getProductsFilter(request, products)
     pagination = Paginator(productsFilter, 4)
     page_number = request.GET.get("page")

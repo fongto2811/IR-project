@@ -239,7 +239,7 @@
           <div class="d-flex justify-content-start">
             <img
               class="preview_img m-2"
-              src="https://m.media-amazon.com/images/I/61POocZniqL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
+              src="{{product.thumbnailImage}}"
               alt=""
             />
             <div class="ms-2">
@@ -249,15 +249,15 @@
               <div>
                 <label>
                   {{product.stars}}
-                  <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
+                  {% if product.stars >= 1.0 %}<i class="fa fa-star rating-color"></i>{% else %}<i class="fa fa-star"></i>{% endif %}
+                  {% if product.stars >= 2.0 %}<i class="fa fa-star rating-color"></i>{% else %}<i class="fa fa-star"></i>{% endif %}
+                  {% if product.stars >= 3.0 %}<i class="fa fa-star rating-color"></i>{% else %}<i class="fa fa-star"></i>{% endif %}
+                  {% if product.stars >= 4.0 %}<i class="fa fa-star rating-color"></i>{% else %}<i class="fa fa-star"></i>{% endif %}
+                  {% if product.stars == 5.0 %}<i class="fa fa-star rating-color"></i>{% else %}<i class="fa fa-star"></i>{% endif %}
                 </label>
                 <label class="ms-2 text-primary">{{product.reviewCount}} Ratings</label>
               </div>
-                <div><strong>Price</strong> : {{product.price.value}} $</div>
+                <div><strong>Price</strong>: {{product.price.value}} $</div>
                 <div><strong>Brand</strong>: {{product.brand}}</div>
                 <div><strong>Description</strong>: {{product.description}}</div>
               </div>
