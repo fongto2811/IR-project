@@ -59,7 +59,7 @@ def getProductsFilter(req, products):
     #     filtered_items = [item for item in filtered_items if search_query.lower() in item['title'].lower()]
 
     if stars:  # New lines
-        filtered_items = [item for item in filtered_items if float(item.get_stars()) <= float(stars)]
+        filtered_items = [item for item in filtered_items if int(item.get_stars()) == float(stars)]
 
     return filtered_items
 
