@@ -37,7 +37,9 @@
         color: #fbc634 !important;
       }
       .preview_img {
+        object-fit: contain;
         width: 150px;
+        min-width: 150px;
         height: 150px;
       }
     </style>
@@ -331,9 +333,9 @@
                 Sort
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                <li><a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'sort' %}{{ key }}={{ value }}&{% endif %}{% endfor %}sort=increase">
+                <li><a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'sort' %}{{ key }}={{ value }}&{% endif %}{% endfor %}sort=1">
                   Incremental prices</a></li>
-                <li><a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'sort' %}{{ key }}={{ value }}&{% endif %}{% endfor %}sort=decrease">
+                <li><a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'sort' %}{{ key }}={{ value }}&{% endif %}{% endfor %}sort=-1">
                   Decremental prices</a></li>
               </ul>
         </div>

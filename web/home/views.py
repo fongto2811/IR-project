@@ -66,7 +66,7 @@ def getProductsFilter(req, products):
         filtered_items = [item for item in filtered_items if float(item.get_stars()) <= float(stars)]
 
     # sort items
-    if sorted_price == "increase":
+    if sorted_price == "1":
         filtered_items.sort(key=sortByPrice)
     else :
         filtered_items.sort(key=sortByPrice,reverse=True)
