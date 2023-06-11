@@ -121,20 +121,26 @@
             <div class="card-body">
               <h5 class="card-title">Featured Price</h5>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1" onclick="filterByPrice1()">
-                <label class="form-check-label" for="flexCheckDefault1">0 - 5 USD</label>
+                {% if minPrice == "0" %}<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1" checked onclick="filterByPrice1()">
+                <label class="form-check-label" for="flexCheckDefault1">0 - 5 USD</label>{% else %}<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1" onclick="filterByPrice1()">
+                <label class="form-check-label" for="flexCheckDefault1">0 - 5 USD</label>{% endif %}
+                
               </div>              
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" onclick="filterByPrice2()">
-                <label class="form-check-label" for="flexCheckDefault2">5 - 10 USD</label>
+                {% if minPrice == "5" %}<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" checked onclick="filterByPrice2()">
+                <label class="form-check-label" for="flexCheckDefault2">5 - 10 USD</label>{% else %}<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" onclick="filterByPrice2()">
+                <label class="form-check-label" for="flexCheckDefault2">5 - 10 USD</label>{% endif %}
               </div>       
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" onclick="filterByPrice3()">
-                <label class="form-check-label" for="flexCheckDefault3">10 - 20 USD</label>
+                {% if minPrice == "10" %}<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" checked onclick="filterByPrice3()">
+                <label class="form-check-label" for="flexCheckDefault3">10 - 20 USD</label>{% else %}<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" onclick="filterByPrice3()">
+                <label class="form-check-label" for="flexCheckDefault3">10 - 20 USD</label>{% endif %}
+                
               </div>       
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4" onclick="filterByPrice4()">
-                <label class="form-check-label" for="flexCheckDefault4">>20 USD</label>
+                {% if minPrice == "20" %}<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4" checked onclick="filterByPrice4()">
+                <label class="form-check-label" for="flexCheckDefault4">>20 USD</label>{% else %}<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4" onclick="filterByPrice4()">
+                <label class="form-check-label" for="flexCheckDefault4">>20 USD</label>{% endif %}
               </div>       
             </div>
           </div>
@@ -142,90 +148,170 @@
             <div class="card-body">
               <h5 class="card-title">Featured Star</h5>          
               <div class="form-check" >
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  name="stars"
-                  value="1"
-                  id="star-1"
-                  onclick="filterByStars(1)"
-                />
-                <label class="form-check-label" for="flexCheckDefault">
-                  <i class="fa fa-star rating-color"></i>
-                  {% comment %} <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i> {% endcomment %}
-                </label>
+                {% if stars == "1" %}<input
+                class="form-check-input"
+                type="checkbox"
+                name="stars"
+                value="1"
+                id="star-1"
+                checked
+                onclick="filterByStars(1)"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                <i class="fa fa-star rating-color"></i>
+                {% comment %} <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i> {% endcomment %}
+              </label>{% else %}<input
+              class="form-check-input"
+              type="checkbox"
+              name="stars"
+              value="1"
+              id="star-1"
+              onclick="filterByStars(1)"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              <i class="fa fa-star rating-color"></i>
+              {% comment %} <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i> {% endcomment %}
+            </label>{% endif %}
               </div>
               <div class="form-check" >
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  name="stars"
-                  value="2"
-                  id="star-2"
-                  onclick="filterByStars(2)"
-                />
-                <label class="form-check-label" for="star-2">
-                  <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star rating-color"></i>
-                  {% comment %} <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i> {% endcomment %}
-                </label>
+                {% if stars == "2" %}<input
+                class="form-check-input"
+                type="checkbox"
+                name="stars"
+                value="2"
+                id="star-2"
+                checked
+                onclick="filterByStars(2)"
+              />
+              <label class="form-check-label" for="star-2">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                {% comment %} <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i> {% endcomment %}
+              </label>{% else %}<input
+              class="form-check-input"
+              type="checkbox"
+              name="stars"
+              value="2"
+              id="star-2"
+              onclick="filterByStars(2)"
+            />
+            <label class="form-check-label" for="star-2">
+              <i class="fa fa-star rating-color"></i>
+              <i class="fa fa-star rating-color"></i>
+              {% comment %} <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i> {% endcomment %}
+            </label>{% endif %}
+                
               </div>
               <div class="form-check" >
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  name="stars"
-                  value="3"
-                  id="star-3"                 
-                  onclick="filterByStars(3)"
-                />
-                <label class="form-check-label" for="star-3">
-                  <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star rating-color"></i>
-                  {% comment %} <i class="fa fa-star"></i>
+                {% if stars == "3" %}<input
+                class="form-check-input"
+                type="checkbox"
+                name="stars"
+                value="3"
+                id="star-3"  
+                checked               
+                onclick="filterByStars(3)"
+              />
+              <label class="form-check-label" for="star-3">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                {% comment %} <i class="fa fa-star"></i>
 
-                  <i class="fa fa-star"></i> {% endcomment %}
-                </label>
+                <i class="fa fa-star"></i> {% endcomment %}
+              </label>{% else %}<input
+              class="form-check-input"
+              type="checkbox"
+              name="stars"
+              value="3"
+              id="star-3"                 
+              onclick="filterByStars(3)"
+            />
+            <label class="form-check-label" for="star-3">
+              <i class="fa fa-star rating-color"></i>
+              <i class="fa fa-star rating-color"></i>
+              <i class="fa fa-star rating-color"></i>
+              {% comment %} <i class="fa fa-star"></i>
+
+              <i class="fa fa-star"></i> {% endcomment %}
+            </label>{% endif %}
+                
               </div>
               <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  name="stars"
-                  value="4"
-                  id="star-4"
-                  onclick="filterByStars(4)"
-                />
-                <label class="form-check-label" for="star-4">
-                  <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star rating-color"></i>
-                  {% comment %} <i class="fa fa-star"></i> {% endcomment %}
-                </label>
+                {% if stars == "4" %}<input
+                class="form-check-input"
+                type="checkbox"
+                name="stars"
+                value="4"
+                id="star-4"
+                checked
+                onclick="filterByStars(4)"
+              />
+              <label class="form-check-label" for="star-4">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                {% comment %} <i class="fa fa-star"></i> {% endcomment %}
+              </label>{% else %}<input
+              class="form-check-input"
+              type="checkbox"
+              name="stars"
+              value="4"
+              id="star-4"
+              onclick="filterByStars(4)"
+            />
+            <label class="form-check-label" for="star-4">
+              <i class="fa fa-star rating-color"></i>
+              <i class="fa fa-star rating-color"></i>
+              <i class="fa fa-star rating-color"></i>
+              <i class="fa fa-star rating-color"></i>
+              {% comment %} <i class="fa fa-star"></i> {% endcomment %}
+            </label>{% endif %}
+                
               </div>
               <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  name="stars"
-                  value="5"
-                  id="star-5"
-                  onclick="filterByStars(5)"
-                />
-                <label class="form-check-label" for="star-5">
-                  <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star rating-color"></i>
-                </label>               
+                {% if stars == "5" %}<input
+                class="form-check-input"
+                type="checkbox"
+                name="stars"
+                value="5"
+                id="star-5"
+                checked
+                onclick="filterByStars(5)"
+              />
+              <label class="form-check-label" for="star-5">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+              </label> {% else %}<input
+              class="form-check-input"
+              type="checkbox"
+              name="stars"
+              value="5"
+              id="star-5"
+              onclick="filterByStars(5)"
+            />
+            <label class="form-check-label" for="star-5">
+              <i class="fa fa-star rating-color"></i>
+              <i class="fa fa-star rating-color"></i>
+              <i class="fa fa-star rating-color"></i>
+              <i class="fa fa-star rating-color"></i>
+              <i class="fa fa-star rating-color"></i>
+            </label> {% endif %}
+                              
               </div>
             </div>
           </div>
@@ -233,7 +319,24 @@
         </div>
       </div>
       <div class="col-sm-9">
+        <div class="d-flex justify-content-between">
         <h5 class="mt-3">Show {{countProducts}} Items</h5>
+          <button
+                class="btn btn-light dropdown-toggle m-3"
+                type="button"
+                id="dropdownMenuButton2"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Sort
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                <li><a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'sort' %}{{ key }}={{ value }}&{% endif %}{% endfor %}sort=increase">
+                  Incremental prices</a></li>
+                <li><a class="dropdown-item" href="?{% for key, value in request.GET.items %}{% if key != 'sort' %}{{ key }}={{ value }}&{% endif %}{% endfor %}sort=decrease">
+                  Decremental prices</a></li>
+              </ul>
+        </div>
         {% for product in productsList %}
         <div class="card mb-3 me-3">
           <div class="d-flex justify-content-start">
@@ -333,12 +436,14 @@
           url += '?min_price=' + minPrice + '&max_price=' + maxPrice;
       }
       window.location.href = url;
+      checkbox.checked = true;
     } else {
       // Xóa yêu cầu lọc giá
       var url = window.location.href;
       url = url.replace(/([&?])min_price=[^&]+/g, '');
       url = url.replace(/([&?])max_price=[^&]+/g, '');
       window.location.href = url;
+      checkbox.checked = false;
     }
   }
 </script>
@@ -377,12 +482,14 @@
           url += '?min_price=' + minPrice + '&max_price=' + maxPrice;
       }
       window.location.href = url;
+      checkbox.checked = true;
     } else {
       // Xóa yêu cầu lọc giá
       var url = window.location.href;
       url = url.replace(/([&?])min_price=[^&]+/g, '');
       url = url.replace(/([&?])max_price=[^&]+/g, '');
       window.location.href = url;
+      checkbox.checked = false;
     }
   }
 </script>

@@ -24,12 +24,16 @@ es = Elasticsearch(
 if not es.ping():
     raise ValueError("Connection failed")
 
+def sortByPrice(item):
+    return float(item.get_price())
+
 
 def getProductsFilter(req, products):
     category = req.GET.get('category')
     min_price = req.GET.get('min_price')
     max_price = req.GET.get('max_price')
     stars = req.GET.get('stars')  # New line
+    sorted_price = req.GET.get('sort')
 
     filtered_items = []
 
@@ -59,7 +63,13 @@ def getProductsFilter(req, products):
     #     filtered_items = [item for item in filtered_items if search_query.lower() in item['title'].lower()]
 
     if stars:  # New lines
-        filtered_items = [item for item in filtered_items if int(item.get_stars()) == float(stars)]
+        filtered_items = [item for item in filtered_items if float(item.get_stars()) <= float(stars)]
+
+    # sort items
+    if sorted_price == "increase":
+        filtered_items.sort(key=sortByPrice)
+    else :
+        filtered_items.sort(key=sortByPrice,reverse=True)
 
     return filtered_items
 
@@ -110,6 +120,7 @@ def home(request):
         productsList = pagination.page(pagination.num_pages)
 
     count = len(productsFilter)
+    print(request.GET.get("min_price"))
 
     return render(request, 'home.html',
-                  {"countProducts": count, "products": productsFilter, "productsList": productsList})
+                  {"countProducts": count, "products": productsFilter, "productsList": productsList, "minPrice": request.GET.get("min_price"), "stars": request.GET.get("stars")})
