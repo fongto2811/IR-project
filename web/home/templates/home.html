@@ -312,8 +312,23 @@
       // Gửi yêu cầu lọc tới server
       var url = window.location.href;
       if (url.indexOf('?') > -1){
+        let urlParams = getAllUrlParams();
+        let minPricePrev = urlParams.min_price
+        if(minPricePrev) {
+          url = window.location.origin + "?"
+          urlParams.min_price = minPrice;
+          urlParams.max_price = maxPrice
+          for(value in urlParams) {
+            if(url[url.length-1] === '?') {
+              url = url + value+ "=" + urlParams[value];  
+            } else {
+
+              url = url +"&"+ value+ "=" + urlParams[value];
+            }
+          }
+        } else {
           url += '&min_price=' + minPrice + '&max_price=' + maxPrice;
-          console.log(window.location.search);
+        }
       } else {
           url += '?min_price=' + minPrice + '&max_price=' + maxPrice;
       }
@@ -341,7 +356,23 @@
       // Gửi yêu cầu lọc tới server
       var url = window.location.href;
       if (url.indexOf('?') > -1){
+        let urlParams = getAllUrlParams();
+        let minPricePrev = urlParams.min_price
+        if(minPricePrev) {
+          url = window.location.origin + "?"
+          urlParams.min_price = minPrice;
+          urlParams.max_price = maxPrice
+          for(value in urlParams) {
+            if(url[url.length-1] === '?') {
+              url = url + value+ "=" + urlParams[value];  
+            } else {
+
+              url = url +"&"+ value+ "=" + urlParams[value];
+            }
+          }
+        } else {
           url += '&min_price=' + minPrice + '&max_price=' + maxPrice;
+        }
       } else {
           url += '?min_price=' + minPrice + '&max_price=' + maxPrice;
       }
@@ -370,7 +401,23 @@
       // Gửi yêu cầu lọc tới server
       var url = window.location.href;
       if (url.indexOf('?') > -1){
+        let urlParams = getAllUrlParams();
+        let minPricePrev = urlParams.min_price
+        if(minPricePrev) {
+          url = window.location.origin + "?"
+          urlParams.min_price = minPrice;
+          urlParams.max_price = maxPrice
+          for(value in urlParams) {
+            if(url[url.length-1] === '?') {
+              url = url + value+ "=" + urlParams[value];  
+            } else {
+
+              url = url +"&"+ value+ "=" + urlParams[value];
+            }
+          }
+        } else {
           url += '&min_price=' + minPrice + '&max_price=' + maxPrice;
+        }
       } else {
           url += '?min_price=' + minPrice + '&max_price=' + maxPrice;
       }
@@ -398,7 +445,23 @@
       // Gửi yêu cầu lọc tới server
       var url = window.location.href;
       if (url.indexOf('?') > -1){
+        let urlParams = getAllUrlParams();
+        let minPricePrev = urlParams.min_price
+        if(minPricePrev) {
+          url = window.location.origin + "?"
+          urlParams.min_price = minPrice;
+          urlParams.max_price = maxPrice
+          for(value in urlParams) {
+            if(url[url.length-1] === '?') {
+              url = url + value+ "=" + urlParams[value];  
+            } else {
+
+              url = url +"&"+ value+ "=" + urlParams[value];
+            }
+          }
+        } else {
           url += '&min_price=' + minPrice + '&max_price=' + maxPrice;
+        }
       } else {
           url += '?min_price=' + minPrice + '&max_price=' + maxPrice;
       }
